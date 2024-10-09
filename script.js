@@ -27,8 +27,16 @@ function addTask() {
     // Event Listener for Marking Task as Completed
     li.addEventListener('click', function() {
         li.classList.toggle('completed');
+       
+        // Change button label based on task completion status
+        if (li.classList.contains('completed')) {
+            deleteBtn.textContent = 'Complete'; // Change label to Complete
+            deleteBtn.style.backgroundColor = 'green'; // Optional: Change button color to green
+        } else {
+            deleteBtn.textContent = 'Delete'; // Change label back to Delete
+            deleteBtn.style.backgroundColor = 'red'; // Change button color back to red
+        }
     });
-
     // Append Delete Button to Task
     li.appendChild(deleteBtn);
 
