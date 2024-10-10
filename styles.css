@@ -6,7 +6,7 @@ body {
 }
 
 header {
-  background-color: rgba(61, 143, 76, 0.5); /* Adjusted opacity for better visibility */
+  background-color: yellow; /* Adjusted opacity for better visibility */
   color: black;
   text-align: center;
   padding: 20px;
