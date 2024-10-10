@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Task Organizer</title>
+    <title>Personal Task Organizer  
+	</title>
+	<div> <img src="./icon-1.png" width="100" height="100" loading="lazy" alt="Add Task"> </div> 
     <link rel="stylesheet" href="styles.css">
-  
-<script>
-function navigateTo(page) {
+    <script>
+        function navigateTo(page) {
             // Hide all sections except the requested one
             document.querySelectorAll('section').forEach((section) => {
                 section.style.display = 'none';
@@ -22,126 +23,32 @@ function navigateTo(page) {
             navigateTo('features');
         };
 
-function lti_launch( vars, target ) {
-						var query = '';
-						var new_tab = false;
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
 
-						for(var key in vars) {
-							if(query.length == 0) {
-								query += '?' + key + '=' + encodeURIComponent(vars[key]);
-							}
-							else {
-								query += '&' + key + '=' + encodeURIComponent(vars[key]);
-							}
-						}
+            if (taskInput.value.trim() === '') return; // Do not add empty tasks
 
-						var url = '/d2l/customization/pearsonlti/6606/Launch' + query;(target == '_blank') ? window.open( url, '_blank' ) : location.replace( url );}</script><script src="https://s.brightspace.com/lib/bsi/2024.9.245/unbundled/embeds.js" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
-					window.D2L.EmbedRenderer.renderEmbeds(document.body);
-				});</script><script src="https://s.brightspace.com/lib/bsi/2024.9.245/unbundled/mathjax.js" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
-						if (document.querySelector('math') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
-							document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
-								elm.setAttribute('style', 'display: block; height: 0.5rem;');
-							});
+            const newTask = document.createElement('li');
+            newTask.textContent = taskInput.value;
+            newTask.className = 'task-item'; // Add class for animations
 
-							window.D2L.MathJax.loadMathJax({
-								outputScale: 1.5,
-								renderLatex: true,
-								enableMML3Support: false
-							});
-						}
-					});</script><script src="https://s.brightspace.com/lib/bsi/2024.9.245/unbundled/prism.js" type="module"></script><script>document.addEventListener('DOMContentLoaded', function() {
-					document.querySelectorAll('.d2l-code').forEach(code => {
-						window.D2L.Prism.formatCodeElement(code);
-					});
-				});</script><script src="https://s.brightspace.com/lib/bsi/2024.9.245/unbundled/creator.js" type="module"></script><script>document.addEventListener('DOMContentLoaded', async () => {
-					const activities = [];
-					const practices = [];
-					const allPractices = document.querySelectorAll('.d2l-practice');
-					const elements = document.querySelectorAll('.d2l-element');
-					let layouts = [...document.querySelectorAll('.d2l-cplus-layout')];
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function() {
+                // Add fade-out animation before removing
+                newTask.classList.add('fade-out');
+                newTask.addEventListener('transitionend', function() {
+                    taskList.removeChild(newTask);
+                });
+            };
 
-					layouts = layouts.filter((layout) => layout.closest('.d2l-element.mceNonEditable') === null);
-
-					for (const practice of allPractices) {
-						const activityContainer = practice.hasAttribute('data-d2l-activity-href');
-						if (activityContainer) {
-							activities.push(practice);
-						}
-						else {
-							practices.push(practice);
-						}
-					}
-
-					if (layouts.length > 0) {
-						window.D2L.Creator.convertLayouts(layouts);
-					}
-					if (elements.length > 0) {
-						window.D2L.Creator.convertElements(elements, 6606, '/content/', 'True');
-					}
-					if (activities.length > 0) {
-						window.D2L.Creator.convertPracticeActivities(activities, 6606, '/content/');
-					}
-					if (practices.length > 0) {
-						window.D2L.Creator.convertPractices(practices, 6606, '/content/');
-					}
-				});</script><script>document.addEventListener('DOMContentLoaded', function() {
-						if (document.documentElement.hasAttribute('lang')) return;
-						document.documentElement.setAttribute('lang', 'en-us'); 						
-					});</script><script>document.addEventListener('DOMContentLoaded', function() {
-						if (document.head.querySelector('title')) return;
-						var handleAppendTitle = function(evt) {
-							if (!evt || !evt.data) return;
-
-							try {
-								var data = JSON.parse(evt.data);
-								if (data.handler !== 'd2l.iframe.requestPageTitle' || !data.pageTitle) return;
-
-								window.removeEventListener('message', handleAppendTitle, false);
-
-								var titleElm = document.createElement('title');
-								titleElm.textContent = data.pageTitle;
-								document.head.appendChild(titleElm);
-							} catch (e) {}	
-						};
-
-						window.addEventListener('message', handleAppendTitle, false);
-						window.parent.postMessage(JSON.stringify({ handler: 'd2l.iframe.requestPageTitle' }), '*');
-					});</script><script>window.addEventListener('message', function(event) { 
-					if( !event.data ) {
-						return;
-					}
-
-					let params;
-					try {
-						params = JSON.parse( event.data );
-					}
-					catch {
-						return;
-					}
-					if( !params.subject || params.subject !== 'lti.frameResize' ) {
-						return;
-					}
-
-					const MAX_FRAME_HEIGHT = 10000;
-					if( !params.height || params.height < 1 || params.height > MAX_FRAME_HEIGHT ) {
-						console.warn( 'Invalid height value received, aborting' );
-						return;
-					}
-					const el = document.getElementsByTagName( 'iframe' );
-					for ( let i=0; i < el.length; i++ ) {
-						if( el[i].contentWindow === event.source ) {
-							el[i].style.height = params.height + 'px';
-
-							console.info( 'Setting iFrame height to ' + params.height );
-
-							if( el[i].getAttribute('lockwidth') !== 'true'){
-								el[i].style.width = '100%';
-								console.info( 'Setting iFrame width to 100%' );
-							}
-						}
-					}
-				});</script>
-                </head>
+            newTask.appendChild(deleteButton);
+            taskList.appendChild(newTask);
+            taskInput.value = ''; // Clear the input field
+        }
+    </script>
+</head>
 <body>
     <!-- Header and Navigation -->
     <header>
@@ -159,37 +66,75 @@ function lti_launch( vars, target ) {
                 <li><a href="#" onclick="navigateTo('contact')">Contact Us</a></li>
             </ul>
         </nav>
-        
     </header>
 
     <main>
         <!-- Features Section (Default Visible) -->
         <section id="features">
             <h2>Features</h2>
-            <p>This application includes the following features:</p>
-            <ul>
-                <li><a href="#" onclick="navigateTo('add-task')">Add new tasks to your list</a></li>
-                <li><a href="#" onclick="navigateTo('delete-task')">Delete tasks you no longer need</a></li>
-                <li><a href="#" onclick="navigateTo('complete-task')">Mark tasks as completed</a></li>
+            <!-- <p>This application includes the following features:</p> -->
+            <ul class="grid-list">
+                <li data-reveal="bottom">
+                    <div class="about-card">
+                        <div class="card-icon">
+                            <img src="./project-3.png" width="500" height="400" loading="lazy" alt="Add Task">
+                        </div>
+                        <h3 class="h4 card-title"><a href="#" onclick="navigateTo('add-task')">Add Task</a></h3>
+                        <p class="card-text">
+                            Adding tasks in a task organizer helps you stay organized, prioritize, 
+							and track progress. It breaks down larger goals into manageable steps, 
+							improves time management, and ensures you stay focused and productive.
+                        </p>
+                    </div>
+                </li>
+                <li data-reveal="bottom" data-reveal-delay="0.25s">
+                    <div class="about-card">
+                        <div class="card-icon">
+                            <img src="./project-1.png" width="500" height="400" loading="lazy" alt="Complete Task">
+                        </div>
+                        <h3 class="h4 card-title"><a href="#" onclick="navigateTo('complete-task')">Complete Task</a></h3>
+                        <p class="card-text">
+							Completing a task brings a sense of accomplishment, motivates progress, and provides a clear visual cue of achievement. It frees mental space for the next priority, boosting productivity and reinforcing good habits to stay on track toward overall goals.                        </p>
+                    </div>
+                </li>
+                <li data-reveal="bottom" data-reveal-delay="0.5s">
+                    <div class="about-card">
+                        <div class="card-icon">
+                            <img src="./project-2.png" width="500" height="400" loading="lazy" alt="Delete Task">
+                        </div>
+                        <h3 class="h4 card-title"><a href="#" onclick="navigateTo('delete-task')">Delete Task</a></h3>
+                        <p class="card-text">
+							Deleting tasks in a task organizer removes unnecessary items, keeping your list clear and focused. It reduces clutter, prevents overwhelm, and helps you stay organized by focusing only on important tasks.
+                        </p>
+                    </div>
+                </li>
+                <li data-reveal="bottom" data-reveal-delay="0.75s">
+                    <div class="about-card">
+                        <div class="card-icon">
+                            <img src="./icon-5.svg" width="500" height="400" loading="lazy" alt="contact">
+                        </div>
+                        <h3 class="h4 card-title"><a href="mailto:info@gmail.com">Contact Us</a></h3>
+                        <p class="card-text">
+							Feel free to contact us with any questions or feedback. We're here to assist and ensure your satisfaction, and our team is ready to help with any inquiries you may have.
+                        </p>
+                    </div>
+                </li>
             </ul>
+
+            <!-- Add Task Section -->
             <div id="addtask">
-                <h3>Add Task</h3>
+                <h1>Add Task</h1>
                 <input type="text" id="taskInput" placeholder="Enter a new task">
                 <button onclick="addTask()">Add Task</button>
-
+                <ul id="taskList"></ul>
             </div>
-            <ul id="taskList"></ul>
-      </section>
-
-     
+        </section>
 
         <!-- Add Task Section (Hidden by Default) -->
         <section id="add-task" style="display: none;">
             <h2>Add Task</h2>
             <p>To add a new task, enter the task description in the input field and click the "Add Task" button.</p>
-          </section>
-
-         
+        </section>
 
         <!-- Delete Task Section (Hidden by Default) -->
         <section id="delete-task" style="display: none;">
@@ -219,9 +164,9 @@ function lti_launch( vars, target ) {
 
     <!-- Footer -->
     <footer>
-        <p>Created by Sara Saqer| Mid-Term Project</p>
+        <p>Created by Sara Saqer | Mid-Term Project</p>
     </footer>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
