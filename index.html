@@ -1,172 +1,597 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Task Organizer  
-	</title>
-	<div> <img src="./icon-1.png" width="100" height="100" loading="lazy" alt="Add Task"> </div> 
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        function navigateTo(page) {
-            // Hide all sections except the requested one
-            document.querySelectorAll('section').forEach((section) => {
-                section.style.display = 'none';
-            });
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            // Show the requested section
-            document.getElementById(page).style.display = 'block';
-        }
+  <!-- 
+    - primary meta tags
+  -->
+  <title>دكتور احمد بسيونى - استشارى متخصص في جراحة القلب المفتوح وجراحة القلب بالمنظار في جامعة عين شمس</title>
+  <meta name="title" content="دكتور احمد بسيونى - استشارى متخصص في جراحة القلب المفتوح وجراحة القلب بالمنظار في جامعة عين شمس. ">
+  <meta name="description" content="This is a personal portfolio html template made by IBRAHIM BASSIONY">
 
-        // Default to show only the features section when page loads
-        window.onload = function() {
-            navigateTo('features');
-        };
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
 
-        function addTask() {
-            const taskInput = document.getElementById('taskInput');
-            const taskList = document.getElementById('taskList');
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
 
-            if (taskInput.value.trim() === '') return; // Do not add empty tasks
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-            const newTask = document.createElement('li');
-            newTask.textContent = taskInput.value;
-            newTask.className = 'task-item'; // Add class for animations
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.jpg">
+  <link rel="preload" as="image" href="./assets/images/Blog.svg">
 
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.onclick = function() {
-                // Add fade-out animation before removing
-                newTask.classList.add('fade-out');
-                newTask.addEventListener('transitionend', function() {
-                    taskList.removeChild(newTask);
-                });
-            };
-
-            newTask.appendChild(deleteButton);
-            taskList.appendChild(newTask);
-            taskInput.value = ''; // Clear the input field
-        }
-    </script>
 </head>
+
 <body>
-    <!-- Header and Navigation -->
-    <header>
-        <h1>Personal Task Organizer</h1>
-        <nav>
-            <ul>
-                <li><a href="#" onclick="navigateTo('about')">About</a></li>
-                <li><a href="#" id="featuresLink" onclick="navigateTo('features')">Features</a>
-                    <ul class="submenu">
-                        <li><a href="#" onclick="navigateTo('add-task')">Add Task</a></li>
-                        <li><a href="#" onclick="navigateTo('delete-task')">Delete Task</a></li>
-                        <li><a href="#" onclick="navigateTo('complete-task')">Complete Task</a></li>
-                    </ul>
-                </li>                
-                <li><a href="#" onclick="navigateTo('contact')">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <!-- Features Section (Default Visible) -->
-        <section id="features">
-            <h2>Features</h2>
-            <!-- <p>This application includes the following features:</p> -->
-            <ul class="grid-list">
-                <li data-reveal="bottom">
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <img src="./project-3.png" width="500" height="400" loading="lazy" alt="Add Task">
-                        </div>
-                        <h3 class="h4 card-title"><a href="#" onclick="navigateTo('add-task')">Add Task</a></h3>
-                        <p class="card-text">
-                            Adding tasks in a task organizer helps you stay organized, prioritize, 
-							and track progress. It breaks down larger goals into manageable steps, 
-							improves time management, and ensures you stay focused and productive.
-                        </p>
-                    </div>
-                </li>
-                <li data-reveal="bottom" data-reveal-delay="0.25s">
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <img src="./project-1.png" width="500" height="400" loading="lazy" alt="Complete Task">
-                        </div>
-                        <h3 class="h4 card-title"><a href="#" onclick="navigateTo('complete-task')">Complete Task</a></h3>
-                        <p class="card-text">
-							Completing a task brings a sense of accomplishment, motivates progress, and provides a clear visual cue of achievement. It frees mental space for the next priority, boosting productivity and reinforcing good habits to stay on track toward overall goals.                        </p>
-                    </div>
-                </li>
-                <li data-reveal="bottom" data-reveal-delay="0.5s">
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <img src="./project-2.png" width="500" height="400" loading="lazy" alt="Delete Task">
-                        </div>
-                        <h3 class="h4 card-title"><a href="#" onclick="navigateTo('delete-task')">Delete Task</a></h3>
-                        <p class="card-text">
-							Deleting tasks in a task organizer removes unnecessary items, keeping your list clear and focused. It reduces clutter, prevents overwhelm, and helps you stay organized by focusing only on important tasks.
-                        </p>
-                    </div>
-                </li>
-                <li data-reveal="bottom" data-reveal-delay="0.75s">
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <img src="./icon-5.svg" width="500" height="400" loading="lazy" alt="contact">
-                        </div>
-                        <h3 class="h4 card-title"><a href="mailto:info@gmail.com">Contact Us</a></h3>
-                        <p class="card-text">
-							Feel free to contact us with any questions or feedback. We're here to assist and ensure your satisfaction, and our team is ready to help with any inquiries you may have.
-                        </p>
-                    </div>
-                </li>
-            </ul>
+  <!-- 
+    - #HEADER
+  -->
 
-            <!-- Add Task Section -->
-            <div id="addtask">
-                <h1>Add Task</h1>
-                <input type="text" id="taskInput" placeholder="Enter a new task">
-                <button onclick="addTask()">Add Task</button>
-                <ul id="taskList"></ul>
+  <header class="header" data-header>
+    <div class="container">
+
+      
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <!-- <a href="#" class="logo">
+            <img src="./assets/images/log-light.svg" width="64" height="24" alt="ahmed home">
+          </a> -->
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+
+        </div>
+
+        <div class="wrapper">
+          <a href="mailto:info@email.com" class="contact-link">bassionyibrahim0@email.com</a>
+
+          <a href="tel:001234567890" class="contact-link"> 01556798500 </a>
+        </div>
+
+        <a href="#" class="logo">
+          <img src="./assets/images/logo ahmed.png" width="100" height="24" alt="ahmed home">
+        </a>
+
+        <ul class="navbar-list">
+
+
+          <li>
+            <a href="#" class="navbar-link">الرئيسية</a>
+          </li>
+
+          <li>
+            <a href="#" class="navbar-link">دكتور احمد بسيونى</a>
+          </li>
+
+          <li>
+            <a href="#" class="navbar-link">جراحة القلب بالمنظار</a>
+          </li>
+
+        
+          <li>
+            <a href="#" class="navbar-link">جراحة القلب المفتوح</a>
+          </li>
+         
+          <li>
+            <a href="#" class="navbar-link">ارقامنا</a>
+          </li>
+
+        </ul>
+
+        <ul class="social-list">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-dribbble"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+        
+
+      </nav>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" aria-label="home">
+        <div class="container">
+
+          <figure class="hero-banner">
+            <img src="./assets/images/ahmed photo.png" width="560" height="540" alt="دكتور احمد بسيونى" class="w-100"
+              data-reveal="top">
+
+            <!-- <img src="./assets/images/ahmed photo.png" width="203" height="91" alt="250+ تم اجراء عملية" class="shape"
+              data-reveal="top" data-reveal-delay="0.25s"> -->
+          </figure>
+
+          <div class="hero-content">
+
+            <h1 class="h1 hero-title" data-reveal="top" data-reveal-delay="0.5s">
+              استشارى متخصص في جراحة القلب المفتوح وجراحة القلب بالمنظار في جامعة عين شمس
+            </h1>
+
+            <p class="section-text" data-reveal="top" data-reveal-delay="0.75s">
+                يسعدني الترحيب بك في موقع دكتور أحمد بسيوني السقا،أهتم بتقديم رعاية طبية شاملة ومتميزة لكل مريض، مستندًا إلى خبرة واسعة ومعرفة عميقة بأحدث المستجدات الطبية
+            </p>
+
+            <div class="btn-wrapper" data-reveal="top" data-reveal-delay="1s">
+              <a href="#" class="btn btn-primary">اطلع على اعمالى</a>
+
+              <a href="#" class="btn btn-secondary">تواصل معنا</a>
             </div>
-        </section>
 
-        <!-- Add Task Section (Hidden by Default) -->
-        <section id="add-task" style="display: none;">
-            <h2>Add Task</h2>
-            <p>To add a new task, enter the task description in the input field and click the "Add Task" button.</p>
-        </section>
+          </div>
 
-        <!-- Delete Task Section (Hidden by Default) -->
-        <section id="delete-task" style="display: none;">
-            <h2>Delete Task</h2>
-            <p>Click the 'delete' button next to a task to delete it from the Personal Task Organizer list.</p>
-        </section>
+        </div>
+      </section>
 
-        <!-- Complete Task Section (Hidden by Default) -->
-        <section id="complete-task" style="display: none;">
-            <h2>Complete Task</h2>
-            <p>Click on a task to mark it as completed.</p>
-        </section>
 
-        <!-- About Section (Hidden by Default) -->
-        <section id="about" style="display: none;">
-            <h2>About the Personal Task Organizer Application</h2>
-            <p>This application is designed to help you organize and manage your tasks efficiently. You can add new tasks, delete tasks you no longer need, and mark tasks as completed.</p>
-            <p>It provides a simple interface for everyday task management. Whether you're planning a project or just keeping track of daily errands, this tool is designed to be straightforward and easy to use.</p>
-        </section>
 
-        <!-- Contact Us Section (Hidden by Default) -->
-        <section id="contact" style="display: none;">
-            <h2>Get in Touch</h2>
-            <p>Email us at <a href="mailto:info@gmail.com">info@example.com</a>.</p>
-        </section>
-    </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>Created by Sara Saqer | Mid-Term Project</p>
-    </footer>
 
-    <script src="script.js"></script>
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about" aria-label="about">
+        <div class="container">
+
+          <div class="wrapper">
+            <ul class="progress-list" data-reveal="right">
+
+              <li class="progress-item">
+
+                <div class="label-wrapper">
+                  <p>عملية ..............</p>
+
+                  <span class="span">100 %</span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-fill" style="width: 100%; background-color: #c7b1dd"></div>
+                </div>
+
+              </li>
+
+              <li class="progress-item">
+
+                <div class="label-wrapper">
+                  <p>عملية ..............</p>
+
+                  <span class="span">90 %</span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-fill" style="width: 90%; background-color: #8caeec"></div>
+                </div>
+
+              </li>
+
+              <li class="progress-item">
+
+                <div class="label-wrapper">
+                  <p>عملية ..............</p>
+
+                  <span class="span">85 %</span>
+                </div>
+
+                <div class="progress">
+                  <div class="progress-fill" style="width: 85%; background-color: #b0d4c1"></div>
+                </div>
+
+              </li>
+
+
+
+            </ul>
+
+
+            <div data-reveal="Right">
+              <h2 class="h2 section-title" >ما أقدمه </h2>
+
+              <p class="section-text">
+                
+              أقدم خدمات طبية متخصصة في جراحة القلب المفتوح وجراحة القلب بالمنظار، مستفيدًا من خبرتي الواسعة في هذا المجال.
+              أركز على توفير رعاية طبية شاملة ومتميزة، مستندًا إلى أحدث التقنيات والمستجدات الطبية لضمان تحقيق أفضل النتائج لمرضاي. أسعى دائمًا لتحقيق التميز في كل عملية، وأضع صحة المرضى وراحتهم في قمة أولوياتي
+              </p>
+            </div>
+
+         
+          </div>
+
+          <ul class="grid-list">
+
+            <li data-reveal="bottom">
+              <div class="about-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/icon-1.svg" width="52" height="52" loading="lazy" alt="web design icon">
+                </div>
+
+                <h3 class="h4 card-title">عملية ............</h3>
+
+                <p class="card-text">
+                  عملية القلب المفتوح هي إجراء جراحي يتم فيه فتح الصدر للوصول إلى القلب وإصلاح المشكلات مثل انسداد الشرايين أو تصحيح عيوب القلب. يتم تنفيذ هذه
+                   العملية عادةً باستخدام جهاز القلب والرئتين لتوفير الدورة الدموية والتهوية أثناء الجراحة.
+                </p>
+
+              </div>
+            </li>
+
+            <li data-reveal="bottom" data-reveal-delay="0.25s">
+              <div class="about-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/icon-2.svg" width="52" height="52" loading="lazy" alt="mobile design icon">
+                </div>
+
+                <h3 class="h4 card-title">عملية </h3>
+
+                <p class="card-text">
+                  عملية القلب المفتوح هي إجراء جراحي يتم فيه فتح الصدر للوصول إلى القلب وإصلاح المشكلات مثل انسداد الشرايين أو تصحيح عيوب القلب. يتم تنفيذ هذه
+                   العملية عادةً باستخدام جهاز القلب والرئتين لتوفير الدورة الدموية والتهوية أثناء الجراحة.
+                </p>
+                </p>
+
+              </div>
+            </li>
+
+            <li data-reveal="bottom" data-reveal-delay="0.5s">
+              <div class="about-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/icon-3.svg" width="52" height="52" loading="lazy"
+                    alt="web development icon">
+                </div>
+
+                <h3 class="h4 card-title">عملية</h3>
+
+                <p class="card-text">
+                  عملية القلب المفتوح هي إجراء جراحي يتم فيه فتح الصدر للوصول إلى القلب وإصلاح المشكلات مثل انسداد الشرايين أو تصحيح عيوب القلب. يتم تنفيذ هذه
+                  العملية عادةً باستخدام جهاز القلب والرئتين لتوفير الدورة الدموية والتهوية أثناء الجراحة.
+               </p>
+                </p>
+
+              </div>
+            </li>
+
+          
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #PROJECT
+      -->
+
+      <section class="section project" aria-labelledby="project-label">
+        <div class="container">
+
+          <div class="title-wrapper" data-reveal="top">
+
+            <div>
+              <h2 class="h2 section-title" id="project-label">اخر مقالاتى</h2>
+
+              <p class="section-text">
+                برجاء الاطلاع على اخر مقالاتى.
+              </p>
+            </div>
+
+            <a href="#" class="btn btn-secondary">جميع المقالات</a>
+
+          </div>
+
+<!-- 
+          <ul class="grid-list">
+
+            <li>
+              <div class="project-card project-card-1" style="background-color: #f8f5fb">
+
+                <div class="card-content" data-reveal="left">
+
+                  <p class="card-tag" style="color: #a07cc5">Web Design</p>
+
+                  <h3 class="h3 card-title">Snowlake Theme</h3>
+
+                  <p class="card-text">
+                    Maecenas faucibus mollis interdum sed posuere consectetur est at lobortis. Scelerisque id ligula
+                    porta felis euismod semper. Fusce dapibus tellus cursus.
+                  </p>
+
+                  <a href="#" class="btn-text" style="color: #a07cc5">
+                    <span class="span">See Project</span>
+
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  </a>
+
+                </div>
+
+                <figure class="card-banner" data-reveal="right">
+                  <img src="./assets/images/project-1.png" width="650" height="370" loading="lazy" alt="Web Design"
+                    class="w-100">
+                </figure>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="project-card project-card-2" style="background-color: #f1f5fd">
+
+                <div class="card-content" data-reveal="right">
+
+                  <p class=" card-tag" style="color: #3f78e0">Mobile Design</p>
+
+                  <h3 class="h3 card-title">Budget App</h3>
+
+                  <p class="card-text">
+                    Maecenas faucibus mollis interdum sed posuere consectetur est at lobortis. Scelerisque id ligula
+                    porta felis euismod semper. Fusce dapibus tellus cursus.
+                  </p>
+
+                  <a href="#" class="btn-text" style="color: #3f78e0">
+                    <span class="span">See Project</span>
+
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  </a>
+
+                </div>
+
+                <figure class="card-banner" data-reveal="left">
+                  <img src="./assets/images/project-2.png" width="600" height="367" loading="lazy" alt="Web Design"
+                    class="w-100">
+                </figure>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="project-card project-card-3" style="background-color: #f5faf7">
+
+                <div class="card-content" data-reveal="left">
+
+                  <p class=" card-tag" style="color: #7cb798">Web Design</p>
+
+                  <h3 class="h3 card-title">Missio Theme</h3>
+
+                  <p class="card-text">
+                    Maecenas faucibus mollis interdum sed posuere porta consectetur cursus porta lobortis. Scelerisque
+                    id ligula felis.
+                  </p>
+
+                  <a href="#" class="btn-text" style="color: #7cb798">
+                    <span class="span">See Project</span>
+
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  </a>
+
+                </div>
+
+                <figure class="card-banner" data-reveal="right">
+                  <img src="./assets/images/project-3.png" width="600" height="367" loading="lazy" alt="Web Design"
+                    class="w-100">
+                </figure>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="project-card project-card-4" style="background-color: #fcf4f6">
+
+                <div class="card-content" data-reveal="left">
+
+                  <p class=" card-tag" style="color: #d16b86">Mobile Design</p>
+
+                  <h3 class="h3 card-title">Storage App</h3>
+
+                  <p class="card-text">
+                    Maecenas faucibus mollis interdum sed posuere consectetur est at lobortis. Scelerisque id ligula
+                    porta felis euismod semper.
+                  </p>
+
+                  <a href="#" class="btn-text" style="color: #d16b86">
+                    <span class="span">See Project</span>
+
+                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                  </a>
+
+                </div>
+
+                <figure class="card-banner" data-reveal="right">
+                  <img src="./assets/images/project-4.png" width="620" height="370" loading="lazy" alt="Mobile Design"
+                    class="w-100">
+                </figure>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+        - #CONTACT
+      -->
+<!-- 
+      <section class="section contact" aria-label="contact">
+        <div class="container">
+
+          <div class="contact-card">
+
+            <div class="contact-content" data-reveal="left">
+
+              <div class="card-icon">
+                <img src="./assets/images/icon-5.svg" width="44" height="44" loading="lazy" alt="envelop icon">
+              </div>
+
+              <h2 class="h2 section-title">If you like what you see, let's work together.</h2>
+
+              <p class="section-text">
+                I bring rapid solutions to make the life of my clients easier. Have any questions? Reach out to me from
+                this contact form and I will get back to you shortly.
+              </p>
+
+            </div>
+
+            <form action="" class="contact-form" data-reveal="right">
+
+              <div class="input-wrapper">
+                <input type="text" name="name" placeholder="Name *" required class="input-field">
+
+                <input type="email" name="email_address" placeholder="Email *" required class="input-field">
+              </div>
+
+              <textarea name="message" placeholder="Message *" required class="input-field"></textarea>
+
+              <button type="submit" class="btn btn-secondary">Send message</button>
+
+            </form>
+
+          </div>
+
+        </div>
+      </section>-->
+
+    </article>
+  </main> 
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+    <div class="container">
+
+      <p class="copyright">
+        ©2024 ibrahimbassiony.
+      </p>
+
+      <ul class="social-list">
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-dribbble"></ion-icon>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="social-link">
+            <ion-icon name="logo-youtube"></ion-icon>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+  </footer>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
+
 </html>
