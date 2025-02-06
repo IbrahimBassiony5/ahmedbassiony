@@ -68,5 +68,41 @@ for (let i = 0, len = revealDelayElements.length; i < len; i++) {
   revealDelayElements[i].style.transitionDelay = revealDelayElements[i].dataset.revealDelay;
 }
 
+
 window.addEventListener("scroll", reveal);
 window.addEventListener("load", reveal);
+// const totalImages = 4;
+// const imagesPerSlide = 2;
+// const slide1 = document.getElementById("slide1");
+// const slide2 = document.getElementById("slide2");
+
+// // إضافة الصور للشريحة 1
+// for (let i = 1; i <= imagesPerSlide; i++) {
+//     let img = document.createElement("img");
+//     img.src = `customers/${i}.jpeg`;
+//     img.style.width = "19%";
+//     img.style.margin = "5px";
+//     slide1.appendChild(img);
+// }
+
+// // إضافة الصور للشريحة 2
+// for (let i = imagesPerSlide + 1; i <= totalImages; i++) {
+//     let img = document.createElement("img");
+//     img.src = `customers/${i}.jpeg`;
+//     img.style.width = "19%";
+//     img.style.margin = "5px";
+//     slide2.appendChild(img);
+// }
+
+// // تشغيل السلايد شو تلقائيًا
+// let currentSlide = 0;
+// const slides = document.querySelectorAll(".slide");
+
+// function showSlides() {
+//     slides.forEach(slide => slide.style.display = "none");
+//     slides[currentSlide].style.display = "block";
+//     currentSlide = (currentSlide + 1) % slides.length;
+// }
+
+// showSlides();  // تشغيل العرض عند التحميل
+// setInterval(showSlides, 5000); // تبديل كل 5 ثوانٍ
